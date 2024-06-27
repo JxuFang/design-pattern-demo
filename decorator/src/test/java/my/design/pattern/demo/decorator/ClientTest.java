@@ -22,7 +22,7 @@ public class ClientTest {
 
     @Test
     public void testFileDataSource() {
-        File file = new File("./test.txt");
+        File file = new File("src/test/resources/test.txt");
         DataSource fileDataSource = new FileDataSource(file);
         fileDataSource.write(new ByteArrayInputStream("hello, world!".getBytes(StandardCharsets.UTF_8)));
         try (InputStream inputstream = fileDataSource.read()) {
