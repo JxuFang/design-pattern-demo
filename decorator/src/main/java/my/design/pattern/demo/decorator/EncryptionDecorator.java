@@ -1,16 +1,11 @@
-package my.design.pattren.demo.decorator;
+package my.design.pattern.demo.decorator;
 
-import cn.hutool.Hutool;
-import cn.hutool.core.io.IoUtil;
-import cn.hutool.core.util.StrUtil;
 import cn.hutool.crypto.SecureUtil;
-import cn.hutool.crypto.symmetric.AES;
 import cn.hutool.crypto.symmetric.SymmetricAlgorithm;
 import cn.hutool.crypto.symmetric.SymmetricCrypto;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
-import java.nio.charset.StandardCharsets;
 
 /**
  * @Author: Fang Jinxu

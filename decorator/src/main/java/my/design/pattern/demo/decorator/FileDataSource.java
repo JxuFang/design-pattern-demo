@@ -1,10 +1,8 @@
-package my.design.pattren.demo.decorator;
+package my.design.pattern.demo.decorator;
 
-import cn.hutool.Hutool;
 import cn.hutool.core.io.FileUtil;
 import lombok.extern.slf4j.Slf4j;
 
-import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.InputStream;
 

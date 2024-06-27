@@ -1,4 +1,4 @@
-package my.design.pattren.demo.decorator;
+package my.design.pattern.demo.decorator;
 
 import java.io.InputStream;
 

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<configuration debug="false">
+    <!-- 模块名称 -->
+    <property name="MODUEL_NAME" value="dsgp-soar"/>
+
+    <!-- 日志上下文名称 -->
+    <contextName>${MODUEL_NAME}</contextName>
+
+    <!-- 控制台日志：输出全部日志到控制台 -->
+    <appender name="DEFAULT_STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <Pattern>${CONSOLE_LOG_PATTERN}</Pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+    </appender>
+
+    <root level="info">
+        <appender-ref ref="DEFAULT_STDOUT"/>
+    </root>
+</configuration>
