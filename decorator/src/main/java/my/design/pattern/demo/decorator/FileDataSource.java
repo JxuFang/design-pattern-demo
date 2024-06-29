@@ -22,6 +22,7 @@ public class FileDataSource implements DataSource{
 
     @Override
     public void write(InputStream data) {
+        log.info("write into file data source");
         FileUtil.writeFromStream(data, file);
     }
 
@@ -30,6 +31,7 @@ public class FileDataSource implements DataSource{
         if (!file.exists()) {
             log.error("file [{}] not exist", file.getName());
         }
+        log.info("read from file data source");
         return FileUtil.getInputStream(file);
     }
 }

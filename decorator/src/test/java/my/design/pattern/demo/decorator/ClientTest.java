@@ -1,7 +1,6 @@
 package my.design.pattern.demo.decorator;
 
 import cn.hutool.core.io.IoUtil;
-import cn.hutool.core.util.StrUtil;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
@@ -27,6 +26,43 @@ public class ClientTest {
         fileDataSource.write(new ByteArrayInputStream("hello, world!".getBytes(StandardCharsets.UTF_8)));
         try (InputStream inputstream = fileDataSource.read()) {
             System.out.println(IoUtil.getUtf8Reader(inputstream).readLine());
+        } catch (IOException e) {
+            System.out.println("error");
+        }
+    }
+    @Test
+    public void testCompressionDecorator() {
+        File file = new File("src/test/resources/test.gzip");
+        CompressionDecorator gzipFile = new CompressionDecorator(new FileDataSource(file));
+        gzipFile.write(new ByteArrayInputStream("hello, world!".getBytes(StandardCharsets.UTF_8)));
+        try (InputStream inputstream = gzipFile.read()) {
+            System.out.println(IoUtil.getUtf8Reader(inputstream).readLine());
+        } catch (IOException e) {
+            System.out.println("error");
+        }
+    }
+
+    @Test
+    public void testEncryptionDecorator() {
+        File file = new File("src/test/resources/test.encrypt");
+        DataSource encryptFile = new EncryptionDecorator(new FileDataSource(file));
+        encryptFile.write(new ByteArrayInputStream("hello, world!".getBytes(StandardCharsets.UTF_8)));
+        try (InputStream inputStream = encryptFile.read()) {
+            System.out.println(IoUtil.getUtf8Reader(inputStream).readLine());
+        } catch (IOException e) {
+            System.out.println("error");
+        }
+    }
+
+    @Test
+    public void testCompressAndEncrypt() {
+        File file = new File("src/test/resources/test.final");
+        FileDataSource src = new FileDataSource(file);
+        CompressionDecorator compress = new CompressionDecorator(src);
+        EncryptionDecorator encrypt = new EncryptionDecorator(compress);
+        encrypt.write(new ByteArrayInputStream("hello, world!".getBytes(StandardCharsets.UTF_8)));
+        try (InputStream inputStream = encrypt.read()) {
+            System.out.println(IoUtil.getUtf8Reader(inputStream).readLine());
         } catch (IOException e) {
             System.out.println("error");
         }

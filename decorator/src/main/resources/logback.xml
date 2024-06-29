@@ -7,15 +7,19 @@
     <!-- 日志上下文名称 -->
     <contextName>${MODUEL_NAME}</contextName>
 
-    <!-- 控制台日志：输出全部日志到控制台 -->
-    <appender name="DEFAULT_STDOUT" class="ch.qos.logback.core.ConsoleAppender">
-        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
-            <Pattern>${CONSOLE_LOG_PATTERN}</Pattern>
+    <!-- 指定日志文件的基本信息 -->
+    <property name="LOG_PATTERN" value="%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n"/>
+
+    <!-- 控制台 appender -->
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <!-- 设置输出格式 -->
+        <encoder>
+            <pattern>${LOG_PATTERN}</pattern>
             <charset>UTF-8</charset>
         </encoder>
     </appender>
 
     <root level="info">
-        <appender-ref ref="DEFAULT_STDOUT"/>
+        <appender-ref ref="CONSOLE"/>
     </root>
 </configuration>

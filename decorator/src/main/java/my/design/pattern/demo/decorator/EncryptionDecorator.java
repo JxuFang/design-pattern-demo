@@ -3,6 +3,7 @@ package my.design.pattern.demo.decorator;
 import cn.hutool.crypto.SecureUtil;
 import cn.hutool.crypto.symmetric.SymmetricAlgorithm;
 import cn.hutool.crypto.symmetric.SymmetricCrypto;
+import lombok.extern.slf4j.Slf4j;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
@@ -12,6 +13,7 @@ import java.io.InputStream;
  * @Description:
  * @Date: 2024-06-26 22:08
  */
+@Slf4j
 public class EncryptionDecorator extends DataSourceDecorator{
 
     private final SymmetricCrypto aes;
@@ -27,6 +29,7 @@ public class EncryptionDecorator extends DataSourceDecorator{
     public InputStream read() {
         InputStream encryptedData = super.read();
         byte[] decrypt = aes.decrypt(encryptedData);
+        log.info("decrypt data source");
         return new ByteArrayInputStream(decrypt);
 
     }
@@ -35,6 +38,7 @@ public class EncryptionDecorator extends DataSourceDecorator{
     public void write(InputStream data) {
         byte[] encrypt = aes.encrypt(data);
         InputStream encryptedData = new ByteArrayInputStream(encrypt);
+        log.info("encrypt data source");
         super.write(encryptedData);
     }
 
